@@ -1,0 +1,56 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <h4>Insurance Policy Details</h4>
+
+  <table class="table table-borderless">
+  <tr>
+    <th>Policy No:
+    </th>
+    <td><%= @insurance_policy.policyno %></td>
+  </tr>
+
+  <tr>
+    <th>Insurer:
+    </th>
+    <td><%= @insurance_policy.insurer %></td>
+  </tr>
+
+  <tr>
+    <th>Policy Value:
+    </th>
+    <td><%= @insurance_policy.value %></td>
+  </tr>
+
+  <tr>
+    <th>Insurance Type:
+    </th>
+    <td><%= @insurance_policy.insurance_type %></td>
+  </tr>
+
+  <tr>
+    <th>Current Expiry:
+    </th>
+    <td><%= @insurance_policy.current_expiry %></td>
+  </tr>
+
+  <tr>
+    <th>Customer Name:
+    </th>
+    <td><%= link_to @insurance_policy.customer.name, @insurance_policy.customer %></td>
+  </tr>
+</table>
+
+
+  <p>
+    <% if @insurance_policy.renewals.any? %>
+    <p><h4>Renewal History</h4></p>
+      <ol>
+        <%= render @renewals %>
+        </ol>
+        <% end %>
+  </p>
+
+  <%= link_to 'Edit', edit_insurance_policy_path(@insurance_policy) %> |
+  <%= link_to 'Back', insurance_policies_path %>
+
+  </div>

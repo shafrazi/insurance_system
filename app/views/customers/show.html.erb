@@ -1,0 +1,32 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <h4>Customer Details</h4>
+
+  <table class="table table-borderless">
+    <tr>
+      <th>Name: </th>
+      <td><%= @customer.name %></td>
+      </tr>
+      <tr>
+        <th>Address: </th>
+        <td><%= @customer.address %></td>
+        </tr>
+    </table>
+    <br />
+
+
+  <p>
+    <% if @customer.insurance_policies.any? %>
+    <p>
+      <h4>Insurance Policies in force</h4>
+    </p>
+      <ol>
+        <%= render @insurance_policies %>
+      </ol>
+    <% end %>
+  </p>
+
+  <%= link_to 'Edit', edit_customer_path(@customer) %>
+  |
+  <%= link_to 'Back', customers_path %>
+  </div>
