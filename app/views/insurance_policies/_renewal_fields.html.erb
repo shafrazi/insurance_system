@@ -8,11 +8,11 @@
         </div>
         <div class="form-group">
           <%= f.label :begin_date %>
-          <%= f.text_field :begin_date, class: "form-control" %>
+          <%= f.date_select :begin_date, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :expiry_date %>
-          <%= f.text_field :expiry_date, class: "form-control" %>
+          <%= f.date_select :expiry_date, class: "form-control" %>
         </div>
         <div>
           <%= link_to_remove_association "Remove Insurance Renewal", f, class: "btn btn-danger", role: "button" %>
