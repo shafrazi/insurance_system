@@ -40,6 +40,21 @@
   </tr>
 </table>
 
+<br />
+<div class="card">
+  <%= form_for(@insurance_policy) do |f| %>
+  <%= f.fields_for :renewals do |renewal| %>
+  <%= render "renewal_fields", :f => renewal %>
+  <% end %>
+  <div class="links">
+    <%= link_to_add_association "Add Insurance Renewal", f, :renewals, class: "btn btn-primary", role: "button" %>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+    <%= link_to 'Edit', edit_insurance_policy_path(@insurance_policy), class: "btn btn-warning", role: "button" %>
+    <%= link_to 'Back', insurance_policies_path, class: "btn btn-warning", role: "button" %>
+  </div
+  <% end %>
+</div>
+
 
   <p>
     <% if @insurance_policy.renewals.any? %>

@@ -43,6 +43,8 @@ class InsurancePoliciesController < ApplicationController
   def update
     respond_to do |format|
       if @insurance_policy.update(insurance_policy_params)
+        @renewal = @insurance_policy.renewals.last
+        @insurance_policy.update_attributes(current_expiry: @renewal.expiry_date, policyno: @renewal.policyno)
         format.html { redirect_to @insurance_policy, notice: 'Insurance policy was successfully updated.' }
         format.json { render :show, status: :ok, location: @insurance_policy }
       else
@@ -70,6 +72,6 @@ class InsurancePoliciesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def insurance_policy_params
-      params.require(:insurance_policy).permit(:policyno, :insurer, :value, :insurance_type, :current_expiry, :customer_id)
+      params.require(:insurance_policy).permit(:policyno, :insurer, :value, :insurance_type, :current_expiry, :customer_id, renewals_attributes: [:id, :policyno, :begin_date, :expiry_date, :_destroy])
     end
 end

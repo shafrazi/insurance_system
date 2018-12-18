@@ -13,20 +13,29 @@
         </tr>
     </table>
     <br />
+    <div class="card">
+      <%= form_for(@customer) do |f| %>
+      <%= f.fields_for :insurance_policies do |policy| %>
+      <%= render "insurance_policy_fields", :f => policy %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association "Add Insurance Policy", f, :insurance_policies, class: "btn btn-primary", role: "button" %>
+        <%= f.submit class: "btn btn-primary" %>
+        <%= link_to 'Edit', edit_customer_path(@customer), class: "btn btn-warning", role: "button" %>
+        <%= link_to 'Back', customers_path, class: "btn btn-warning", role: "button" %>
+      </div
+      <% end %>
+    </div>
 
-
-  <p>
-    <% if @customer.insurance_policies.any? %>
     <p>
-      <h4>Insurance Policies in force</h4>
+      <% if @customer.insurance_policies.any? %>
     </p>
+      <h4>Insurance Policies in force</h4>
+    <p>
       <ol>
         <%= render @insurance_policies %>
       </ol>
-    <% end %>
-  </p>
+      <% end %>
+    </p>
 
-  <%= link_to 'Edit', edit_customer_path(@customer) %>
-  |
-  <%= link_to 'Back', customers_path %>
   </div>
