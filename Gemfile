@@ -12,7 +12,7 @@ gem 'rails', '~> 5.0.7', '>= 5.0.7.1'
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
-gem "simple_calendar", "~> 2.0"
+# gem "simple_calendar", "~> 2.0"
 gem "cocoon"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

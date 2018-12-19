@@ -4,7 +4,12 @@ class InsurancePoliciesController < ApplicationController
   # GET /insurance_policies
   # GET /insurance_policies.json
   def index
-    @insurance_policies = InsurancePolicy.all
+    # @insurance_policies = InsurancePolicy.all
+    if params[:policyno]
+      @insurance_policies = InsurancePolicy.where('policyno LIKE ?', "%#{params[:policyno]}%")
+    else
+      @insurance_policies = InsurancePolicy.all
+    end
   end
 
   # GET /insurance_policies/1

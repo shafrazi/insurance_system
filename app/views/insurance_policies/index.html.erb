@@ -1,42 +1,55 @@
 <div class="container">
   <p id="notice"><%= notice %></p>
 
-  <h1>Insurance Policies</h1>
+  <h1>Search form</h1>
 
-  <table class="table table-striped table-hover">
-    <thead class="thead-light">
-      <tr>
-        <th>Policyno</th>
-        <th>Insurer</th>
-        <th>Value</th>
-        <th>Insurance type</th>
-        <th>Current expiry</th>
-        <th>Customer</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @insurance_policies.each do |insurance_policy| %>
-        <tr>
-          <td><%= insurance_policy.policyno %></td>
-          <td><%= insurance_policy.insurer %></td>
-          <td><%= insurance_policy.value %></td>
-          <td><%= insurance_policy.insurance_type %></td>
-          <td><%= insurance_policy.current_expiry %></td>
-          <td><%= link_to "#{insurance_policy.customer.name}", insurance_policy.customer %></td>
-          <td><%= link_to 'Show', insurance_policy %></td>
-          <td><%= link_to 'Edit', edit_insurance_policy_path(insurance_policy) %></td>
-          <td><%= link_to 'Destroy', insurance_policy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <br>
-
-  <%= link_to 'New Insurance Policy', new_insurance_policy_path %><br />
-  <%= link_to "Add new insurance renewal", new_renewal_path %><br />
-  <%= link_to "Back to Home Page", root_path %>
-
+  <%= form_tag(insurance_policies_path, method: :get) do %>
+  <div class="form-group">
+    <%= label_tag :policyno, 'Insurance Policy No:' %>
+    <%= text_field_tag :policyno, params[:policyno], class: "form-control" %>
   </div>
+  <div class="actions">
+    <%= submit_tag "Search", class: "btn btn-primary", name: nil %>
+  </div>
+
+<% end %>
+
+<h1>Insurance Policies</h1>
+
+<table class="table table-striped table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th>Policyno</th>
+      <th>Insurer</th>
+      <th>Value</th>
+      <th>Insurance type</th>
+      <th>Current expiry</th>
+      <th>Customer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @insurance_policies.each do |insurance_policy| %>
+      <tr>
+        <td><%= insurance_policy.policyno %></td>
+        <td><%= insurance_policy.insurer %></td>
+        <td><%= insurance_policy.value %></td>
+        <td><%= insurance_policy.insurance_type %></td>
+        <td><%= insurance_policy.current_expiry %></td>
+        <td><%= link_to "#{insurance_policy.customer.name}", insurance_policy.customer %></td>
+        <td><%= link_to 'Show', insurance_policy %></td>
+        <td><%= link_to 'Edit', edit_insurance_policy_path(insurance_policy) %></td>
+        <td><%= link_to 'Destroy', insurance_policy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Insurance Policy', new_insurance_policy_path %><br/>
+<%= link_to "Add new insurance renewal", new_renewal_path %><br/>
+<%= link_to "Back to Home Page", root_path %>
+
+</div>
