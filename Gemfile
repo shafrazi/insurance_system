@@ -14,6 +14,7 @@ gem 'sqlite3'
 gem 'puma', '~> 3.0'
 # gem "simple_calendar", "~> 2.0"
 gem "cocoon"
+gem "devise"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
