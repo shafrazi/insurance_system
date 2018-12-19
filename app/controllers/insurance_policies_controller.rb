@@ -48,8 +48,10 @@ class InsurancePoliciesController < ApplicationController
   def update
     respond_to do |format|
       if @insurance_policy.update(insurance_policy_params)
-        @renewal = @insurance_policy.renewals.last
-        @insurance_policy.update_attributes(current_expiry: @renewal.expiry_date, policyno: @renewal.policyno)
+        if @insurance_policy.renewals.any?
+          @renewal = @insurance_policy.renewals.last
+          @insurance_policy.update_attributes(current_expiry: @renewal.expiry_date, policyno: @renewal.policyno)
+        end
         format.html { redirect_to @insurance_policy, notice: 'Insurance policy was successfully updated.' }
         format.json { render :show, status: :ok, location: @insurance_policy }
       else
