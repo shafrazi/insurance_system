@@ -1,7 +1,6 @@
 <div style="width: 60rem;">
-  <div class="card-body">
     <% if f.object.new_record? %>
-    <div class='nested-fields'>
+    <div class='nested-fields well'>
         <div class="form-group">
           <%= f.label :policyno %>
           <%= f.text_field :policyno, class: "form-control" %>
@@ -23,10 +22,10 @@
           <%= f.date_select :current_expiry, class: "form-control" %>
         </div>
         <div>
+          <%= f.submit "Save", class: "btn btn-primary" %>
           <%= link_to_remove_association "Remove Insurance Policy", f, class: "btn btn-danger", role: "button" %>
         </div>
         <br />
       </div>
       <% end %>
-  </div>
 </div>

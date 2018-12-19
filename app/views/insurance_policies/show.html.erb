@@ -1,6 +1,5 @@
 <div class="container">
   <div class="jumbotron">
-    <p id="notice"><%= notice %></p>
     <h4>Insurance Policy Details</h4>
 
     <table class="table table-borderless">
@@ -50,7 +49,6 @@
   <% end %>
   <div class="links">
     <%= link_to_add_association "Add Insurance Renewal", f, :renewals, class: "btn btn-primary", role: "button" %>
-    <%= f.submit "Save", class: "btn btn-primary" %>
     <%= link_to 'Edit', edit_insurance_policy_path(@insurance_policy), class: "btn btn-warning", role: "button" %>
     <%= link_to 'Back', insurance_policies_path, class: "btn btn-warning", role: "button" %>
   </div
@@ -66,8 +64,5 @@
         </ol>
         <% end %>
   </p>
-
-  <%= link_to 'Edit', edit_insurance_policy_path(@insurance_policy) %> |
-  <%= link_to 'Back', insurance_policies_path %>
 
   </div>
