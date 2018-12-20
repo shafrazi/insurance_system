@@ -58,12 +58,23 @@ class RenewalsController < ApplicationController
   # DELETE /renewals/1
   # DELETE /renewals/1.json
   def destroy
-    @renewal.destroy
-    respond_to do |format|
-      format.html { redirect_to renewals_url, notice: 'Renewal was successfully destroyed.' }
-      format.json { head :no_content }
+    @insurance_policy = @renewal.insurance_policy
+    if @renewal == @insurance_policy.renewals.last
+      @renewal.destroy
+        respond_to do |format|
+          format.html { redirect_to insurance_policy_path(@insurance_policy), notice: 'Renewal was successfully destroyed.' }
+          format.json { head :no_content }
+        end
+      @insurance_policy.update_attributes(current_expiry: @insurance_policy.renewals.last.expiry_date, policyno: @insurance_policy.renewals.last.policyno)
+    else
+      @renewal.destroy
+        respond_to do |format|
+          format.html { redirect_to insurance_policy_path(@insurance_policy), notice: 'Renewal was successfully destroyed.' }
+          format.json { head :no_content }
+        end
+      end
     end
-  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
