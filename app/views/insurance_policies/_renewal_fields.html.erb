@@ -2,8 +2,8 @@
     <% if f.object.new_record? %>
     <div class='nested-fields well'>
         <div class="form-group">
-          <%= f.label :policyno %>
-          <%= f.text_field :policyno, class: "form-control" %>
+          <%= f.label :policyno, "Policy No" %>
+          <%= f.text_field :policyno, class: "form-control", value: @insurance_policy.policyno %>
         </div>
         <div class="form-group">
           <%= f.label :begin_date %>

@@ -3,7 +3,9 @@
 
   <%= render 'form', insurance_policy: @insurance_policy %>
 
-  <%= link_to 'Show', @insurance_policy %> |
-  <%= link_to 'Back', insurance_policies_path %>
+  <div class="form-group">
+    <%= link_to 'Show', @insurance_policy, class: "btn btn-warning", role: "button" %>
+    <%= link_to 'Back', insurance_policies_path, class: "btn btn-warning", role: "button" %>
+  </div>
 
   </div>

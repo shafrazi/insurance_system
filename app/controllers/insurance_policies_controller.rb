@@ -1,4 +1,5 @@
 class InsurancePoliciesController < ApplicationController
+  include InsurancePoliciesHelper
   before_action :set_insurance_policy, only: [:show, :edit, :update, :destroy]
 
   # GET /insurance_policies
