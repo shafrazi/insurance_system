@@ -45,6 +45,7 @@
           <td><%= link_to 'Show', insurance_policy %></td>
           <td><%= link_to 'Edit', edit_insurance_policy_path(insurance_policy) %></td>
           <td><%= link_to 'Destroy', insurance_policy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= button_to "Renew policy", {controller: "renewals", action: "policy_index_renew"}, params: {insurance_policy_id: insurance_policy.id}, method: :get, class: "btn btn-primary" %></td>
         </tr>
     <% end %>
   </tbody>

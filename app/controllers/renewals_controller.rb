@@ -28,7 +28,7 @@ class RenewalsController < ApplicationController
 
     respond_to do |format|
       if @renewal.save
-        format.html { redirect_to @renewal, notice: 'Renewal was successfully created.' }
+        format.html { redirect_to insurance_policy_path(@renewal.insurance_policy), notice: 'Renewal was successfully created.' }
         format.json { render :show, status: :created, location: @renewal }
         @insurance_policy = @renewal.insurance_policy
         @insurance_policy.update_attributes(current_expiry: @renewal.expiry_date, policyno: @renewal.policyno)
@@ -73,6 +73,12 @@ class RenewalsController < ApplicationController
           format.json { head :no_content }
         end
       end
+  end
+
+  def policy_index_renew
+    @renewal = Renewal.new
+    @insurance_policy = InsurancePolicy.find(params[:insurance_policy_id])
+    #code
   end
 
 

@@ -27,6 +27,8 @@
       </div
       <% end %>
     </div>
+    <br />
+    <br />
 
     <p>
       <% if @customer.insurance_policies.any? %>
@@ -56,6 +58,7 @@
               <td><%= link_to 'Show', insurance_policy %></td>
               <td><%= link_to 'Edit', edit_insurance_policy_path(insurance_policy) %></td>
               <td><%= link_to 'Destroy', insurance_policy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to "Renew policy", {controller: "renewals", action: "policy_index_renew", insurance_policy_id: insurance_policy.id}, method: :get %></td>
             </tr>
           <% end %>
         </tbody>
