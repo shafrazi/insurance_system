@@ -6,6 +6,7 @@ class InsurancePoliciesController < ApplicationController
   # GET /insurance_policies.json
   def index
     # @insurance_policies = InsurancePolicy.all
+    # params for search field of insurance policy, if no fields are given return all policies
     if params[:policyno]
       @insurance_policies = InsurancePolicy.where('policyno LIKE ?', "%#{params[:policyno]}%")
     else

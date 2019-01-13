@@ -30,6 +30,7 @@ class RenewalsController < ApplicationController
       if @renewal.save
         format.html { redirect_to insurance_policy_path(@renewal.insurance_policy), notice: 'Renewal was successfully created.' }
         format.json { render :show, status: :created, location: @renewal }
+        # for each new renewal added parent policy expiry and policy no will change to match current renewal
         @insurance_policy = @renewal.insurance_policy
         @insurance_policy.update_attributes(current_expiry: @renewal.expiry_date, policyno: @renewal.policyno)
       else
@@ -47,7 +48,10 @@ class RenewalsController < ApplicationController
       if @renewal.update(renewal_params)
         format.html { redirect_to @renewal, notice: 'Renewal was successfully updated.' }
         format.json { render :show, status: :ok, location: @renewal }
-        @insurance_policy.update_attributes(current_expiry: @renewal.expiry_date, policyno: @renewal.policyno)
+        # update policy no and expiry of parent policy only if current renewal is the latest renewal
+        if @renewal == @insurance_policy.renewals.last
+          @insurance_policy.update_attributes(current_expiry: @renewal.expiry_date, policyno: @renewal.policyno)
+        end
       else
         format.html { render :edit }
         format.json { render json: @renewal.errors, status: :unprocessable_entity }
@@ -59,6 +63,7 @@ class RenewalsController < ApplicationController
   # DELETE /renewals/1.json
   def destroy
     @insurance_policy = @renewal.insurance_policy
+      # update parent policy's attributes to match the next latest renewal only if current renewal is the latest and not the only renewal
       if @renewal == @insurance_policy.renewals.last && @renewal!= @insurance_policy.renewals.first
       @renewal.destroy
         respond_to do |format|
