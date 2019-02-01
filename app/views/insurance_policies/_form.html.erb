@@ -2,7 +2,7 @@
   <%= form_for(insurance_policy) do |f| %>
     <% if insurance_policy.errors.any? %>
       <div id="error_explanation">
-        <h4><%= pluralize(insurance_policy.errors.count, "error") %> prohibited this insurance_policy from being saved:</h4>
+        <%= pluralize(insurance_policy.errors.count, "error") %> prohibited this insurance_policy from being saved:
 
         <ul>
         <% insurance_policy.errors.full_messages.each do |message| %>

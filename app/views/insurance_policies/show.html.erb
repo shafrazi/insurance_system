@@ -41,13 +41,13 @@
 </div>
 
 <br/>
-<div class="card">
+<div class="card card-body bg-light">
   <%= form_for(@insurance_policy) do |f| %>
   <%= f.fields_for :renewals do |renewal| %>
   <%= render "renewal_fields", :f => renewal %>
 <% end %>
 <div class="links">
-  <%= link_to_add_association "Add Insurance Renewal", f, :renewals, class: "btn btn-primary", role: "button" %>
+  <%= link_to_add_association "Add Insurance Renewal", f, :renewals, class: "btn btn-success", role: "button" %>
   <%= link_to 'Edit', edit_insurance_policy_path(@insurance_policy), class: "btn btn-warning", role: "button" %>
   <%= link_to 'Back', insurance_policies_path, class: "btn btn-warning", role: "button" %>
 </div <% end %>
@@ -55,7 +55,7 @@
 <br/><br/>
 
 <% if @insurance_policy.renewals.any? %>
-<div class="well">
+<div class="card card-body bg-light">
   <p>
     <h4>Renewal History</h4>
   </p>
