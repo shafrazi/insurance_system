@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="jumbotron">
+  <div class="card card-body bg-light">
     <h3>Customer Details</h3>
 
     <table class="table table-borderless">
@@ -14,7 +14,7 @@
       </table>
   </div>
     <br />
-    <div>
+    <div class="card card-body bg-light">
       <%= form_for(@customer) do |f| %>
       <%= f.fields_for :insurance_policies do |policy| %>
       <%= render "insurance_policy_fields", :f => policy %>
@@ -43,7 +43,7 @@
             <th>Value</th>
             <th>Insurance type</th>
             <th>Current expiry</th>
-            <th colspan="3"></th>
+            <th colspan="4"></th>
           </tr>
         </thead>
 

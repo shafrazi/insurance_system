@@ -18,7 +18,7 @@ gem "devise"
 gem "filterrific"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-gem 'bootstrap-sass'
+gem 'bootstrap'
 
 gem 'autoprefixer-rails'
 # Use Uglifier as compressor for JavaScript assets
