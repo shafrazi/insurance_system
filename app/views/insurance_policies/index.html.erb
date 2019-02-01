@@ -13,8 +13,8 @@
   <% end %>
 </div>
 <br /><br />
-<h2 class="page-header">Insurance Policies <%= link_to "Add New Insurance Policy", new_insurance_policy_path, class: "btn btn-success float-right" %></h2>
-
+<h2 class="page-header">Insurance Policies <section class="float-right"><%= link_to "Add New Insurance Policy", new_insurance_policy_path, class: "btn btn-success"%> <%= link_to "Add Insurance Renewal", new_renewal_path, class: "btn btn-success" %></section></h2>
+<br />
 <table class="table table-sm">
 <thead class="thead-dark">
   <tr>

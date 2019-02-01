@@ -7,10 +7,10 @@ class InsurancePoliciesController < ApplicationController
   def index
     # @insurance_policies = InsurancePolicy.all
     # params for search field of insurance policy, if no fields are given return all policies
-    if params[:policyno]
-      @insurance_policies = InsurancePolicy.where('policyno LIKE ?', "%#{params[:policyno]}%")
+    if params[:search]
+      @insurance_policies = InsurancePolicy.search(params[:search]).all.order("current_expiry ASC")
     else
-      @insurance_policies = InsurancePolicy.all
+      @insurance_policies = InsurancePolicy.all.order("current_expiry ASC")
     end
   end
 
