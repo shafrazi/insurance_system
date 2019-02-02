@@ -7,11 +7,17 @@ class InsurancePoliciesController < ApplicationController
   def index
     # @insurance_policies = InsurancePolicy.all
     # params for search field of insurance policy, if no fields are given return all policies
-    if params[:search]
-      @insurance_policies = InsurancePolicy.search(params[:search]).all.order("current_expiry ASC")
-    else
+    if params[:search_date] == nil || params[:search_date] == ""
       @insurance_policies = InsurancePolicy.all.order("current_expiry ASC")
+    elsif
+      @insurance_policies = InsurancePolicy.search_date(Date.strptime(params[:search_date], "%m/%d/%Y").strftime("%d/%m/%Y").to_datetime).all.order("current_expiry ASC")
     end
+
+    # if params[:search]
+    #   @insurance_policies = InsurancePolicy.search(params[:search]).all.order("current_expiry ASC")
+    # else
+    #   @insurance_policies = InsurancePolicy.all.order("current_expiry ASC")
+    # end
   end
 
   # GET /insurance_policies/1

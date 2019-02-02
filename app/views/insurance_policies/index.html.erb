@@ -1,16 +1,17 @@
 <div class="card card-body bg-light">
   <h3>Search form</h3>
 
-  <%= form_tag(insurance_policies_path, method: :get) do %>
+  <%= form_tag(insurance_policies_path, method: :get, remote: true) do %>
     <div class="form-group">
-      <%= label_tag :policyno, 'Insurance Policy No:' %>
-      <%= text_field_tag :policyno, params[:policyno], class: "form-control" %>
+      <%= label_tag :search_date, 'Insurance Policy No:' %>
+      <%= date_field_tag :search_date, params[:search_date], class: "form-control", data: {provide: "datepicker"} %>
     </div>
     <div class="actions">
       <%= submit_tag "Search", class: "btn btn-primary", name: nil %>
     </div>
 
   <% end %>
+
 </div>
 <br /><br />
 <h2 class="page-header">Insurance Policies <section class="float-right"><%= link_to "Add New Insurance Policy", new_insurance_policy_path, class: "btn btn-success"%> <%= link_to "Add Insurance Renewal", new_renewal_path, class: "btn btn-success" %></section></h2>
@@ -34,7 +35,7 @@
 <tbody>
   <% @insurance_policies.each do |insurance_policy| %>
     <% if is_expired?(insurance_policy) %>
-      <tr class="bg-danger">
+      <tr class="table-danger">
       <% else %>
         <tr>
         <% end %>

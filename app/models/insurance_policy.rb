@@ -14,4 +14,9 @@ class InsurancePolicy < ApplicationRecord
     #code
   end
 
+  def self.search_date(query)
+    where("current_expiry < ?", "#{query} 00:00:00")
+    #code
+  end
+
 end
