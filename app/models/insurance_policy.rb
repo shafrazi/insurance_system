@@ -9,4 +9,9 @@ class InsurancePolicy < ApplicationRecord
     #code
   end
 
+  def self.expired
+    where("current_expiry < ?", Time.now)
+    #code
+  end
+
 end
